@@ -1,7 +1,9 @@
-import { initializeApp } from "firebase/app";
-import { getMessaging } from "firebase/messaging/sw";
+// Importa los scripts de Firebase
+importScripts('https://www.gstatic.com/firebasejs/11.1.0/firebase-app-compat.js');
+importScripts('https://www.gstatic.com/firebasejs/11.1.0/firebase-messaging-compat.js');
 
-const firebaseApp = initializeApp({
+// Inicializa Firebase en el Service Worker
+firebase.initializeApp({
     apiKey: "AIzaSyAy8KHTG-vxVDL2zQAngqVMfm65_kjl_2c",
     authDomain: "pruebafcm2-1ff55.firebaseapp.com",
     projectId: "pruebafcm2-1ff55",
@@ -11,17 +13,18 @@ const firebaseApp = initializeApp({
     measurementId: "G-G0HBWKNCQE"
 });
 
-firebase.initializeApp(firebaseConfig);
-
+// Obtén una instancia de Firebase Messaging
 const messaging = firebase.messaging();
 
-messaging.onBackgroundMessage(function(payload) {
-    console.log('[firebase-messaging-sw.js] Received background message ', payload);
-    const notificationTitle = 'Background Message Title';
-    const notificationOptions = {
-        body: 'Background Message body.',
-        icon: '/firebase-logo.png'
-    };
+// Maneja los mensajes entrantes en segundo plano
+messaging.onBackgroundMessage((payload) => {
+  console.log('[firebase-messaging-sw.js] Received background message ', payload);
+  
+  const notificationTitle = 'Título de notificación';
+  const notificationOptions = {
+    body: 'Background Message body.',
+    icon: '/firebase-logo.png'
+  };
 
-    self.registration.showNotification(notificationTitle, notificationOptions);
+  self.registration.showNotification(notificationTitle, notificationOptions);
 });
