@@ -5,12 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Hello World</title>
   <link href='style.css' rel='stylesheet'>
-  <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+ 
 </head>
 <body>
   <h1>FCM Ejemplo</h1>
   <p id="token">  </p>
- 
+  <select id="tema-select">
+    <option value="noticias">Noticias</option>
+    <option value="deportes">Telefonia</option>
+    <option value="tecnologia">Internet</option>
+  </select>
+  <button onclick="suscribirseAlTema()">Suscribirse</button>
   <script src="./script.js" type="module"></script>
 </body>
 
